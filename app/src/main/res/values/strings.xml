@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ED EAR</string>
+
+    <!-- Preference Titles -->
+    <string name="pref_group_sensors">Sensor Settings</string>
+    <string name="pref_sensor_enable">Enable Sensor Recordings</string>
+    <string name="pref_sensor_periodic">Use Periodic Sensor Recordings</string>
+    <string name="pref_group_audio">Audio Settings</string>
+    <string name="pref_audio_enable">Enable Audio Recordings</string>
+    <string name="pref_audio_duration">Audio Recording Duration</string>
+    <string name="pref_audio_delay">Audio Recording Delay</string>
+    <string name="pref_school_blackout">Enable School Blackout</string>
+    <string name="pref_group_others">Other Settings</string>
+    <string name="pref_pid">Patient ID</string>
+</resources>

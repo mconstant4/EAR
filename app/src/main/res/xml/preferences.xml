@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_group_sensors">
+
+        <SwitchPreference
+            android:title="@string/pref_sensor_enable"
+            android:key="pref_sensor_enable"
+            android:defaultValue="false"/>
+        <CheckBoxPreference
+            android:title="@string/pref_sensor_periodic"
+            android:key="pref_sensor_periodic"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_group_audio">
+
+        <SwitchPreference
+            android:title="@string/pref_audio_enable"
+            android:key="pref_audio_enable"
+            android:defaultValue="false"/>
+        <ear.wbl.egr.uri.edear.preferences.DurationEditTextPreference
+            android:id="@+id/pref_audio_duration"
+            android:layout="@layout/preference_edit_text"
+            android:title="@string/pref_audio_duration"
+            android:key="pref_audio_duration"
+            android:inputType="number"
+            android:defaultValue="30"/>
+        <ear.wbl.egr.uri.edear.preferences.DelayEditTextPreference
+            android:id="@+id/pref_audio_delay"
+            android:layout="@layout/preference_edit_text"
+            android:title="@string/pref_audio_delay"
+            android:key="pref_audio_delay"
+            android:inputType="number"
+            android:defaultValue="12"/>
+        <SwitchPreference
+            android:title="@string/pref_school_blackout"
+            android:key="pref_school_blackout"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_group_others">
+
+        <ear.wbl.egr.uri.edear.preferences.AnEarEditTextPreference
+            android:id="@+id/pref_pid"
+            android:layout="@layout/preference_edit_text"
+            android:title="@string/pref_pid"
+            android:key="pref_pid"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>
