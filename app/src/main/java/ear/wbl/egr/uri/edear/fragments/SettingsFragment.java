@@ -163,7 +163,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     };
                     BandInfo microsoftBand = BandObject.getPairedBands()[0];
                     BandObject bandObject = new BandObject(microsoftBand);
-                    bandObject.enablePeriodic(true);
+                    bandObject.enablePeriodic(sharedPreferences.getBoolean(Preference.SENSOR_PERIODIC.toString(), false));
                     bandObject.setSensorsToRecord(sensors);
                     bandObject.enableHapticFeedback(true);
                     bandObject.enableAutoStream(true);
@@ -193,26 +193,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                     // Configure Audio Object
                     int duration = Integer.parseInt(sharedPreferences.getString(Preference.AUDIO_DURATION.toString(), "30"));
                     int delay = Integer.parseInt(sharedPreferences.getString(Preference.AUDIO_DELAY.toString(), "12"));
-                    AudioObject audioObject = new AudioObject(duration * 1000);
+                    AudioObject audioObject = new AudioObject(duration * 1000); // Duration Units are Seconds
                     if (delay > 0) {
-                        audioObject.enablePeriodic(delay * 60 * 1000);
+                        audioObject.enablePeriodic(delay * 60 * 1000); // Delay Units are Minutes
                     } else if (delay < 0) {
                         Log.e("ED EAR", "Invalid Delay Time!!!");
                     }
+                    audioObject.enableLog(true);
 
                     // Configure Audio Storage Object
-                    File root = AnEar.getRoot(mContext.get());
-                    FilenameFilter filenameFilter = new FilenameFilter() {
-                        @Override
-                        public boolean accept(File dir, String name) {
-                            return name.endsWith(".wav");
-                        }
-                    };
-                    int count = root.list(filenameFilter).length;
-                    Calendar calendar = Calendar.getInstance();
-                    String dateTime = new SimpleDateFormat("MM_dd_yyyy_kk.mm.ss", Locale.US).format(calendar.getTime());
-                    File destination = new File(root, dateTime + ".wav");
-                    AudioStorageObject wavObject = new WavObject(destination);
+                    File destination = new File(AnEar.getRoot(mContext.get()), "audio.wav"); // Filename will be replaced since we are providing a TimeFormat to the WavObject
+                    AudioStorageObject wavObject = new WavObject(destination, "MM_dd_yyyy_kk.mm.ss");
 
                     // Initialize Audio Recorder Service
                     AudioRecorderService.initialize(mContext.get(), audioObject, wavObject);

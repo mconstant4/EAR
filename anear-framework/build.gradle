@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('anear-release (6).aar'))
+artifacts.add("default", file('anear-release (7).aar'))
